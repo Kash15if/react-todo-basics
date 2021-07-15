@@ -1,34 +1,74 @@
-.cardBody{
+body {
+  text-align: center;
+}
+
+.cardBody {
   padding: 2px 10px;
   margin: 10px 10px;
-  background-color: black;
+  background-color: #0d1117;
   color: #ffd5d9;
   border-radius: 8px;
 }
-h2{
+h2 {
   padding: 1px 10px;
 }
 
-.cardText{
+.cardText {
   padding: 0 10px;
   font-size: 15px;
 }
-.delete{
+.delete {
   text-align: end;
   font-size: 15px;
   margin: 5px;
-  color: #d5fffb;
+  color: #3ba6ff;
+  cursor: pointer;
+}
+
+.link {
+  text-decoration: none;
+  color: #ffd5d9;
+}
+
+.title,
+.content {
+  margin: 5vh;
+}
+input,
+textarea {
+  height: 8vh;
+  width: 70vw;
+}
+
+.submit {
+  background-color: #010f01; /* Green */
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.new {
+  width: 60%;
+  padding: 15px;
+  background-color: black;
+  color: pink;
+  border-radius: 2px;
+  margin: 20px 0;
   cursor: pointer;
 }
 
 @media only screen and (min-width: 600px) {
-  
-  .flexCont{
-      display: flex;
-      flex-wrap: wrap;
-
+  .flexCont {
+    display: flex;
+    flex-wrap: wrap;
   }
-  .cardBody{
-      width: 30%;
+  .cardBody {
+    width: 30%;
   }
 }

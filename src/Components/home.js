@@ -1,51 +1,40 @@
-import { useState } from "react";
-import Blog from './blog';
+import { useEffect, useState } from "react";
+import Blog from "./blog";
+import { Link } from "react-router-dom";
 
 const Todo = () => {
+  const [blogs, setBlogs] = useState(null);
 
+  const handleDelete = (id) => {
+    const newBlogs = blogs.filter((blog) => blog.id !== id);
+    setBlogs(newBlogs);
 
-    const[blogs, setBlogs] = useState([
-        {
-            "id": 1,
-            "name": "Harry Potter",
-            "city": "London"
-          },
-          {
-            "id": 2,
-            "name": "Don Quixote",
-            "city": "Madrid"
-          },
-          {
-            "id": 3,
-            "name": "Joan of Arc",
-            "city": "Paris"
-          },
-          {
-            "id": 4,
-            "name": "Rosa Park",
-            "city": "Alabama"
-          }
-          ]);
+    fetch("http://localhost:5000/data/" + id, {
+      method: "DELETE",
+    }).then(() => console.log("deleted"));
+  };
 
-    
-        const handleDelete = (id) => {
-            const newBlogs = blogs.filter(blog => blog.id !== id);
-            setBlogs(newBlogs);
-        }
-    
-    return ( 
-           
+  useEffect(() => {
+    fetch("http://localhost:5000/data")
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setBlogs(data);
+      });
+  }, []);
 
-   <div className="flexCont">
+  return (
+    <div>
+      <Link to="blogs/">
+        <button className="new">Create New</button>
+      </Link>
+      <div className="flexCont">
+        {blogs &&
+          blogs.map((blog) => <Blog blog={blog} handleDelete={handleDelete} />)}
+      </div>
+    </div>
+  );
+};
 
-       {
-           blogs.map((blog)=>(
-            <Blog blog={blog} handleDelete={handleDelete}/>
-            ))
-       }
-   
-  </div>
-     );
-}
- 
 export default Todo;
